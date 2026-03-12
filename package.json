@@ -1,0 +1,35 @@
+{
+  "name": "rstack",
+  "version": "0.1.0",
+  "description": "Opinionated workflow skills for GitHub Copilot — plan, review, ship, browse, retro. Inspired by Garry Tan's gstack.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "browse": "./browse/dist/browse"
+  },
+  "scripts": {
+    "build": "bun build --compile browse/src/cli.ts --outfile browse/dist/browse",
+    "dev": "bun run browse/src/cli.ts",
+    "server": "bun run browse/src/server.ts",
+    "test": "bun test",
+    "start": "bun run browse/src/server.ts"
+  },
+  "dependencies": {
+    "playwright": "^1.58.2",
+    "diff": "^7.0.0"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "keywords": [
+    "copilot",
+    "skills",
+    "browser",
+    "automation",
+    "playwright",
+    "headless",
+    "cli",
+    "ai-agent",
+    "workflow"
+  ]
+}
