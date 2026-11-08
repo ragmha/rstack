@@ -1,13 +1,13 @@
 {
-  "name": "ragmha-skills",
-  "description": "A personal collection of 29 agent skills for the GitHub Copilot CLI: disciplined debugging, issue triage, planning grills, TDD, code review, writing pipelines, AI-credit cost tracking with a custom statusline, and more.",
-  "version": "0.1.0",
+  "name": "rstack",
+  "description": "A personal stack of reusable skills, agents, and workflows for working with AI coding tools.",
+  "version": "0.2.0",
   "author": {
     "name": "Raghib Hasan",
     "url": "https://github.com/ragmha"
   },
-  "homepage": "https://github.com/ragmha/ragmha-skills",
-  "repository": "https://github.com/ragmha/ragmha-skills",
+  "homepage": "https://github.com/ragmha/rstack",
+  "repository": "https://github.com/ragmha/rstack",
   "license": "MIT",
   "keywords": [
     "skills",
@@ -21,5 +21,5 @@
     "writing"
   ],
   "category": "workflow",
-  "skills": "resources/"
+  "skills": "skills/"
 }

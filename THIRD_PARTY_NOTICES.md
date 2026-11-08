@@ -4,7 +4,7 @@
 
 Source: https://github.com/mattpocock/skills
 
-Skills in `resources/` copied or adapted from this project: `grill-me`, `grill-with-docs`, `handoff`, `zoom-out`, `prototype`, `to-prd`, `to-issues`, `triage`, `review`, `improve-codebase-architecture`, `tdd`, `diagnose`, `migrate-to-shoehorn`, `setup-pre-commit`, `write-a-skill`, `caveman`, `writing-fragments`, `writing-shape`, `writing-beats`, and `setup-skills` (adapted).
+Skills in `skills/` copied or adapted from this project: `grill-me`, `grill-with-docs`, `handoff`, `zoom-out`, `prototype`, `to-prd`, `to-issues`, `triage`, `review`, `improve-codebase-architecture`, `tdd`, `diagnose`, `migrate-to-shoehorn`, `setup-pre-commit`, `write-a-skill`, `caveman`, `writing-fragments`, `writing-shape`, `writing-beats`, and `setup-skills` (adapted).
 
 ```text
 MIT License

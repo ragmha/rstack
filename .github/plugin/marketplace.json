@@ -1,24 +1,24 @@
 {
-  "name": "ragmha-skills",
+  "name": "rstack",
   "owner": {
     "name": "Raghib Hasan"
   },
   "metadata": {
-    "description": "Personal collection of agent skills for GitHub Copilot CLI by @ragmha.",
-    "version": "0.1.0"
+    "description": "A personal stack of reusable skills, agents, and workflows for working with AI coding tools.",
+    "version": "0.2.0"
   },
   "plugins": [
     {
-      "name": "ragmha-skills",
-      "description": "All 29 skills in one bundle: context management, planning grills, issue tracker workflow, code review, TDD, repo setup, git workflow, debugging, cost & billing, writing pipelines, skill authoring, communication style, wellness.",
-      "version": "0.1.0",
+      "name": "rstack",
+      "description": "A personal stack of reusable skills, agents, and workflows for working with AI coding tools.",
+      "version": "0.2.0",
       "source": ".",
       "author": {
         "name": "Raghib Hasan",
         "url": "https://github.com/ragmha"
       },
-      "homepage": "https://github.com/ragmha/ragmha-skills",
-      "repository": "https://github.com/ragmha/ragmha-skills",
+      "homepage": "https://github.com/ragmha/rstack",
+      "repository": "https://github.com/ragmha/rstack",
       "license": "MIT",
       "keywords": [
         "skills",
@@ -27,7 +27,7 @@
         "copilot-cli"
       ],
       "category": "workflow",
-      "skills": "resources/"
+      "skills": "skills/"
     }
   ]
 }

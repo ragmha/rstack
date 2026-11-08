@@ -1,22 +1,24 @@
-# Copilot instructions — ragmha-skills
+# Copilot instructions — rstack
 
-A Copilot CLI plugin marketplace that bundles 29 reusable agent **skills** (`SKILL.md` instruction files an agent loads at runtime). This repo is almost entirely Markdown — there is no build, no test runner, and no lint pipeline. Changes are surgical edits to skill files plus README/plugin metadata.
+A generic, reusable stack of skills, agents, and workflows, distributed as a Copilot CLI plugin marketplace. Currently it bundles 29 agent **skills** (`SKILL.md` instruction files an agent loads at runtime). This repo is almost entirely Markdown — there is no build, no test runner, and no lint pipeline. Changes are surgical edits to skill files plus README/plugin metadata. Project-specific canvases belong in `ragmha/lab`, not here.
 
 ## Repository layout
 
 ```
-resources/<kebab-case-name>/        # one folder per skill (the unit of change)
+skills/<kebab-case-name>/           # one folder per skill (the unit of change)
   SKILL.md                          # required — frontmatter + workflow
   REFERENCE.md / EXAMPLES.md / *.md # progressive disclosure (see tdd/, improve-codebase-architecture/)
   scripts/                          # optional bundled executables (.mjs, .sh, .plist)
   frames/                           # only used by take-breaks
-plugin.json                         # Copilot CLI plugin manifest; `skills: "resources/"`
+plugin.json                         # Copilot CLI plugin manifest; `skills: "skills/"`
 .github/plugin/marketplace.json     # `copilot plugin marketplace add` entry point
 README.md                           # categorised index of every skill (must stay in sync)
 CONTRIBUTING.md                     # quality bar + PR rules
 ```
 
-`resources/` is the **only** skills root; both `plugin.json` and `.github/plugin/marketplace.json` point at it. Don't introduce a parallel skills directory.
+`skills/` is the **only** skills root; both `plugin.json` and `.github/plugin/marketplace.json` point at it. Don't introduce a parallel skills directory.
+
+When first needed, add agents under `agents/*.agent.md` and register `"agents": "agents/"` in `plugin.json`. gh-aw workflows live under `workflows/<name>.md`, installable with `gh aw add ragmha/rstack/<name>@vX.Y.Z`; ordinary GitHub Actions YAML is copied into a consumer repo's `.github/workflows/`. Do not scaffold empty directories. Blog links pin to release tags, never `main`.
 
 ## How a skill is loaded (the thing that's easy to get wrong)
 
@@ -29,7 +31,7 @@ description: <what it does>. Use when <concrete trigger phrases>.
 ---
 ```
 
-Rules (from `resources/write-a-skill/SKILL.md`):
+Rules (from `skills/write-a-skill/SKILL.md`):
 
 - **≤ 1024 chars**, third person.
 - First sentence = what it does. Second sentence = `Use when ...` with literal trigger phrases the user might say (e.g. `"diagnose this"`, `"red-green-refactor"`, `"grill me"`). Look at `diagnose`, `tdd`, `grill-me`, `caveman` for the house style.
@@ -47,12 +49,12 @@ From `CONTRIBUTING.md` and observable patterns:
 
 - **One PR per skill change.** Don't batch unrelated skill edits.
 - **Adding a skill** requires four edits in lockstep:
-  1. New folder `resources/<kebab-case-name>/SKILL.md` with valid frontmatter.
+  1. New folder `skills/<kebab-case-name>/SKILL.md` with valid frontmatter.
   2. Add a bullet to `README.md` under the right `###` category, in the exact format:
      ```
-     - [`skill-name`](resources/skill-name/SKILL.md) - One-sentence description ending with a period.
+     - [`skill-name`](skills/skill-name/SKILL.md) - One-sentence description ending with a period.
      ```
-  3. If the skill count changes, update the count in `plugin.json` `description` and `.github/plugin/marketplace.json`, plus the `/skills list` count in `README.md` — keep all three equal to the number of `resources/*/SKILL.md` files.
+  3. If the skill count changes, update the count in `README.md`. Keep the generic plugin and marketplace descriptions in sync.
   4. Sharpen the `description:` triggers — that's what makes invocation work.
 - **New category** in README needs ≥ 2 skills before it's worth creating.
 - **Don't add overlapping skills.** Extend the existing one instead.
@@ -62,8 +64,8 @@ From `CONTRIBUTING.md` and observable patterns:
 
 There are none. Validation is manual:
 
-- Frontmatter sanity: every `resources/*/SKILL.md` starts with a `---` block containing `name:` and `description:`.
-- For script-bearing skills, run the script directly (e.g. `node resources/ai-credits/scripts/cost.mjs`, `bash resources/stay-sharp/scripts/run_silent.sh -- echo ok`) before committing.
+- Frontmatter sanity: every `skills/*/SKILL.md` starts with a `---` block containing `name:` and `description:`.
+- For script-bearing skills, run the script directly (e.g. `node skills/ai-credits/scripts/cost.mjs`) before committing. Wrap test/build/lint commands with `source ~/.agents/skills/stay-sharp/scripts/run_silent.sh` then `run_silent "label" "command string"`.
 - Plugin install smoke test: `copilot plugin install <local-checkout-path>` then `/skills list` in a Copilot CLI session.
 
 ## Style of the skills themselves
