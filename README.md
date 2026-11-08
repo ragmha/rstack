@@ -4,6 +4,8 @@ My personal stack of reusable skills, agents, and workflows for working with AI 
 
 Skills are reusable `SKILL.md` instruction files that teach an AI agent how to perform a specific workflow. Drop them into `~/.copilot/skills/` (personal) or `<repo>/.github/skills/` (project-scoped) and your agent picks them up.
 
+Many skills here are copied or adapted from [mattpocock/skills](https://github.com/mattpocock/skills) (MIT). See [Provenance](#provenance) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 ## Install
 
 ```bash
@@ -115,6 +117,44 @@ A three-stage pipeline: raw material → structured article → narrative beats.
 
 - [`take-breaks`](skills/take-breaks/SKILL.md) - **Cat Gatekeeper** — a macOS launchd agent that opens a Terminal window with an animated ASCII cat and a 5-minute countdown every 30 minutes, forcing you to take a break.
 
+## Provenance
+
+| Origin | Skills |
+|---|---|
+| Upstream, [mattpocock/skills](https://github.com/mattpocock/skills) (MIT) | `grill-me`, `grill-with-docs`, `handoff`, `zoom-out`, `prototype`, `to-prd`, `to-issues`, `triage`, `review`, `improve-codebase-architecture`, `tdd`, `diagnose`, `migrate-to-shoehorn`, `setup-pre-commit`, `write-a-skill`, `caveman`, `writing-fragments`, `writing-shape`, `writing-beats` |
+| Adapted from mattpocock/skills | `setup-skills` (from `setup-matt-pocock-skills`) |
+| Original | `ai-credits`, `take-breaks`, `project-tracker-sync` |
+| Unknown (source not yet verified) | `stay-sharp`, `git-worktree`, `trunk-based-development`, `no-deprecated-code`, `refactor`, `conventional-commit` |
+
+## Proposed skills (not installable)
+
+These are candidates drawn from my own projects. **None ship in the plugin yet**, and no first release has been chosen. Examples are synthetic. Proposals that come from private work are generalized and contain no private code.
+
+| Proposal | Trigger → output | Prerequisites | Maturity | Public evidence |
+|---|---|---|---|---|
+| `agent-config-evals` | "eval my agent config" → deterministic pass/fail report on agent instructions/skills | Agent CLI on PATH | Proven in one repo | [chomp](https://github.com/ragmha/chomp) (`evals/`, `demo/RUNBOOK.md`) |
+| `safe-local-data-mutation` | "edit my local library safely" → snapshot, transactional write, verified restore path | Local SQLite-backed app | Proven in one repo, with tests | [apple-books-mcp](https://github.com/ragmha/apple-books-mcp) |
+| `copilot-canvas-extension` | "build a canvas" → scaffolded Copilot canvas extension with actions | Copilot app with canvas support | Workshop material | [build-your-copilot-canvas-extension](https://github.com/ragmha/build-your-copilot-canvas-extension) |
+| `acceptance-evidence-gate` | "is this done?" → acceptance criteria mapped to evidence; blocks on gaps | Issue/spec with criteria | Generalized from private work | — |
+| `tracker-migration` | "migrate Jira to Azure Boards" → readiness report, then staged, resumable migration | Source/target tracker access | Generalized from private work | — |
+| `agent-telemetry` | "trace my agent session" → OTel traces/metrics for agent runs, with cost | OTel collector | Local prototype | — |
+
+Planned extensions of existing skills (no new skill name):
+
+- `ai-credits`: spend assessment across seats/orgs, reusing `cost.mjs`.
+- `trunk-based-development`: a guided Gitflow → trunk migration, informed by [gitflow-to-trunk](https://github.com/ragmha/gitflow-to-trunk).
+
+Deferred: native iOS UI inspection (depends on experimental simulator tooling) and incident replay (synthetic-only so far; overlaps `diagnose`). Rejected for now: a well-architected review skill whose origin and reuse rights are unclear.
+
+Synthetic example (`acceptance-evidence-gate`):
+
+```text
+Criterion: "Export returns CSV with header row"
+Evidence:  test export.spec.ts › "writes header" ✓
+Criterion: "Large exports stream"
+Evidence:  none → BLOCKED
+```
+
 ## Installing
 
 Verify: `copilot plugin list` and `/skills list` (should show 29 skills). Update with `copilot plugin update rstack`.
@@ -147,7 +187,7 @@ For workspace scope, copy into `<repo>/.github/prompts/` instead.
 
 ## License
 
-[MIT](LICENSE) — © 2026 Raghib Hasan.
+[MIT](LICENSE) — © 2026 Raghib Hasan. Third-party notices: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## Contributing
 
