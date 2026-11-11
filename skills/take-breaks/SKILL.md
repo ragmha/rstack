@@ -20,7 +20,7 @@ Pure bash + osascript. **No external dependencies**, no `chafa`, no node — wor
 ## Files
 
 ```
-~/.copilot/skills/take-breaks/
+take-breaks/
 ├── SKILL.md
 ├── frames/
 │   ├── 01-sit.txt … 08-doze.txt   # animation frames (loop in order)
@@ -35,11 +35,13 @@ Pure bash + osascript. **No external dependencies**, no `chafa`, no node — wor
 
 ## User commands → what to do
 
+Paths are relative to this skill's folder.
+
 | User says | Action |
 |---|---|
-| "install the cat" / "enable cat gatekeeper" | `bash ~/.copilot/skills/take-breaks/scripts/install.sh` |
-| "test the cat" / "fire it now" | `bash ~/.copilot/skills/take-breaks/scripts/cat-gate.sh` |
-| "stop the cat" / "uninstall" / "disable" | `bash ~/.copilot/skills/take-breaks/scripts/uninstall.sh` |
+| "install the cat" / "enable cat gatekeeper" | `bash scripts/install.sh` |
+| "test the cat" / "fire it now" | `bash scripts/cat-gate.sh` |
+| "stop the cat" / "uninstall" / "disable" | `bash scripts/uninstall.sh` |
 | "is the cat running?" | `launchctl list \| grep cat-gatekeeper` |
 | "show the cat logs" | `tail /tmp/cat-gatekeeper.log /tmp/cat-gatekeeper.err` |
 | "change cadence to 45 min" | edit `StartInterval` in plist (seconds), then re-run `install.sh` |

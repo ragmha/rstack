@@ -21,7 +21,7 @@ Do **not** run for: project-tracker itself, dotfile tweaks, throwaway scripts in
 ## Quick start (one command)
 
 ```bash
-bun ~/.copilot/skills/project-tracker-sync/scripts/sync.ts
+bun <skill-dir>/scripts/sync.ts   # <skill-dir> = this skill's folder
 ```
 
 With no args it inspects `process.cwd()`, decides a status from git state, and either adds the project or bumps its status. Idempotent — safe to re-run.

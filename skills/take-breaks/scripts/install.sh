@@ -20,5 +20,5 @@ launchctl load "$PLIST_DST"
 
 echo "🐈 Cat Gatekeeper armed."
 echo "   Fires every 30 min. Logs: /tmp/cat-gatekeeper.log"
-echo "   Test now:  bash ~/.copilot/skills/take-breaks/scripts/cat-gate.sh"
-echo "   Disable:   bash ~/.copilot/skills/take-breaks/scripts/uninstall.sh"
+echo "   Test now:  bash $SCRIPTS_DIR/cat-gate.sh"
+echo "   Disable:   bash $SCRIPTS_DIR/uninstall.sh"
