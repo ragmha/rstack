@@ -4,14 +4,14 @@
     "name": "Raghib Hasan"
   },
   "metadata": {
-    "description": "A personal stack of reusable skills, agents, and workflows for working with AI coding tools.",
-    "version": "0.2.0"
+    "description": "A personal stack of reusable Agent Skills for working with AI coding tools.",
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "rstack",
-      "description": "A personal stack of reusable skills, agents, and workflows for working with AI coding tools.",
-      "version": "0.2.0",
+      "description": "A personal stack of reusable Agent Skills for working with AI coding tools.",
+      "version": "0.3.0",
       "source": ".",
       "author": {
         "name": "Raghib Hasan",

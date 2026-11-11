@@ -10,13 +10,14 @@ description: Track the true USD cost of agentic Copilot work and reconcile it ag
 This is a plain Node CLI. Running it from your shell costs **zero** AI credits and never invokes Copilot.
 
 ```bash
+# <skill-dir> = this skill's folder
 # One-time pick (interactive — shows side-by-side comparison)
-node ~/.copilot/skills/ai-credits/scripts/cost.mjs set-plan
+node <skill-dir>/scripts/cost.mjs set-plan
 
 # Or non-interactive
-node ~/.copilot/skills/ai-credits/scripts/cost.mjs set-plan business     # 1,900 cr
-node ~/.copilot/skills/ai-credits/scripts/cost.mjs set-plan enterprise   # 3,900 cr
-node ~/.copilot/skills/ai-credits/scripts/cost.mjs set-plan unlimited    # informational only
+node <skill-dir>/scripts/cost.mjs set-plan business     # 1,900 cr
+node <skill-dir>/scripts/cost.mjs set-plan enterprise   # 3,900 cr
+node <skill-dir>/scripts/cost.mjs set-plan unlimited    # informational only
 ```
 
 Headless setup — set the plan from your shell rc instead of the agent:

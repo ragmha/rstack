@@ -1,27 +1,50 @@
 # rstack
 
-My personal stack of reusable skills, agents, and workflows for working with AI coding tools. Copy what you need, install the bundle, or follow a release-pinned link from a post.
+My personal stack of reusable skills and workflows for working with AI coding tools. Copy what you need, install the bundle, or follow a release-pinned link from a post.
 
-Skills are reusable `SKILL.md` instruction files that teach an AI agent how to perform a specific workflow. Drop them into `~/.copilot/skills/` (personal) or `<repo>/.github/skills/` (project-scoped) and your agent picks them up.
+Every skill follows the [Agent Skills specification](https://agentskills.io/specification), so any compatible agent can load it. The same skills are served over [MCP](https://modelcontextprotocol.io) through the [Skills extension](https://modelcontextprotocol.io/extensions/skills/overview). Browse them in the [catalog](https://ragmha.github.io/rstack/).
 
 Many skills here are copied or adapted from [mattpocock/skills](https://github.com/mattpocock/skills) (MIT). See [Provenance](#provenance) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## Install
+
+**Any agent** — Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI, OpenCode, and other [Agent Skills clients](https://agentskills.io/clients):
+
+```bash
+npx skills add ragmha/rstack                              # choose skills and agents
+npx skills add ragmha/rstack --skill diagnose -a codex    # one skill, one agent
+```
+
+Add `-g` to install for your user instead of the current project. Update with `npx skills update`.
+
+**MCP hosts** — add the bundled stdio server. Hosts that support the Skills extension load the skills directly; other hosts get each skill as an MCP prompt.
+
+```json
+{
+  "mcpServers": {
+    "rstack": { "command": "npx", "args": ["-y", "github:ragmha/rstack"] }
+  }
+}
+```
+
+**GitHub Copilot CLI plugin:**
 
 ```bash
 copilot plugin marketplace add ragmha/rstack
 copilot plugin install rstack@rstack
 ```
 
+**Manual** — copy `skills/<name>/` into your agent's skills folder.
+
 ## Layout
 
 | Path | Contents |
 | --- | --- |
-| `skills/<name>/SKILL.md` | Reusable agent skills; 29 included today. |
-| `agents/*.agent.md` | Custom agent definitions, when added. |
+| `skills/<name>/SKILL.md` | Reusable Agent Skills; 31 included today. |
+| `mcp/server.mjs` | MCP stdio server for `skills/`: Skills extension plus one prompt per skill. |
 | `workflows/<name>.md` | GitHub Actions / gh-aw agentic workflows, when added. |
 
-Only `skills/` exists today. Add `"agents": "agents/"` to `plugin.json` when the first agent is added. Copy ordinary GitHub Actions YAML into your repo's `.github/workflows/`; install gh-aw workflows with `gh aw add ragmha/rstack/<name>@vX.Y.Z`.
+The Copilot plugin manifest exposes `skills/`. Copy ordinary GitHub Actions YAML into your repo's `.github/workflows/`; install gh-aw workflows with `gh aw add ragmha/rstack/<name>@vX.Y.Z`.
 
 Keep this stack generic. Project-specific canvases and experiments live in [lab](https://github.com/ragmha/lab).
 
@@ -48,6 +71,8 @@ The site's `rstack:` links resolve to `https://github.com/ragmha/rstack/tree/<ve
 ### Context & Session Management
 
 - [`stay-sharp`](skills/stay-sharp/SKILL.md) - Apply context backpressure (silent test/build/lint wrappers, failFast, output filtering) and proactively compact before context rot hits the warm (40%) or dumb (70%) zones.
+- [`repo-status`](skills/repo-status/SKILL.md) - Give a read-only, evidence-based snapshot of the current repository, recent work, checks, and blockers.
+- [`stack-audit`](skills/stack-audit/SKILL.md) - Audit installed skills, agents, and MCP servers for freshness and evidence-based use without treating zero calls as proof of uselessness.
 - [`handoff`](skills/handoff/SKILL.md) - Compact the current conversation into a handoff document for another agent to pick up.
 - [`zoom-out`](skills/zoom-out/SKILL.md) - Tell the agent to zoom out and give a higher-level perspective on a section of code.
 
@@ -123,8 +148,10 @@ A three-stage pipeline: raw material → structured article → narrative beats.
 |---|---|
 | Upstream, [mattpocock/skills](https://github.com/mattpocock/skills) (MIT) | `grill-me`, `grill-with-docs`, `handoff`, `zoom-out`, `prototype`, `to-prd`, `to-issues`, `triage`, `review`, `improve-codebase-architecture`, `tdd`, `diagnose`, `migrate-to-shoehorn`, `setup-pre-commit`, `write-a-skill`, `caveman`, `writing-fragments`, `writing-shape`, `writing-beats` |
 | Adapted from mattpocock/skills | `setup-skills` (from `setup-matt-pocock-skills`) |
-| Original | `ai-credits`, `take-breaks`, `project-tracker-sync` |
+| Original | `ai-credits`, `take-breaks`, `project-tracker-sync`, `stack-audit`, `repo-status` |
 | Unknown (source not yet verified) | `stay-sharp`, `git-worktree`, `trunk-based-development`, `no-deprecated-code`, `refactor`, `conventional-commit` |
+
+`handoff`, `setup-skills` and `zoom-out` keep their non-standard frontmatter fields under `metadata` so they validate against the Agent Skills spec.
 
 ## Proposed skills (not installable)
 
@@ -154,36 +181,6 @@ Evidence:  test export.spec.ts › "writes header" ✓
 Criterion: "Large exports stream"
 Evidence:  none → BLOCKED
 ```
-
-## Installing
-
-Verify: `copilot plugin list` and `/skills list` (should show 29 skills). Update with `copilot plugin update rstack`.
-
-### Copilot CLI — manual copy
-
-```bash
-git clone https://github.com/ragmha/rstack.git
-mkdir -p ~/.copilot/skills
-cp -R rstack/skills/* ~/.copilot/skills/   # all
-cp -R rstack/skills/diagnose ~/.copilot/skills/   # one
-```
-
-### Per-repo (project-scoped)
-
-Drop a skill folder into `<repo>/.github/skills/<name>/`. Project-level skills take precedence over personal and plugin skills.
-
-### VS Code
-
-VS Code Copilot doesn't consume Copilot CLI plugins yet. Copy a skill into your prompts folder and reference it from chat with `#SKILL.md`:
-
-```bash
-# macOS
-cp -R skills/diagnose "$HOME/Library/Application Support/Code/User/prompts/"
-# Linux
-cp -R skills/diagnose "$HOME/.config/Code/User/prompts/"
-```
-
-For workspace scope, copy into `<repo>/.github/prompts/` instead.
 
 ## License
 

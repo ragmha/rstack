@@ -22,7 +22,7 @@ Use the Opus column only when you know the active model is Claude Opus 4.x (Cont
 Use `scripts/run_silent.sh`. Pass = single `✓` line. Fail = full output dumped.
 
 ```bash
-source ~/.copilot/skills/stay-sharp/scripts/run_silent.sh
+source <skill-dir>/scripts/run_silent.sh   # <skill-dir> = this skill's folder
 run_silent "unit tests" "pytest -x"
 run_silent "typecheck"  "tsc --noEmit"
 run_silent "lint"       "eslint ."

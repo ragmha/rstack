@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Browse rstack Agent Skills and install them in any compatible agent or MCP host.">
+    <title>rstack — agent skills</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="player">
+      <header class="player-title titlebar">
+        <span class="titlebar-lines" aria-hidden="true"></span>
+        <a class="wordmark" href="./" aria-label="rstack home">rstack <span>catalog</span></a>
+        <span class="titlebar-lines" aria-hidden="true"></span>
+        <a class="titlebar-link" href="https://github.com/ragmha/rstack">GitHub ↗</a>
+      </header>
+
+      <section class="deck" aria-labelledby="page-title">
+        <div class="deck-display">
+          <div class="display-mark" aria-hidden="true">
+            <span>R</span><span>S</span>
+          </div>
+          <div class="deck-copy">
+            <h1 id="page-title">Agent skills,<br>ready to install.</h1>
+            <p>Every skill follows the open Agent Skills format. Install them in any compatible agent, or connect an MCP host.</p>
+          </div>
+        </div>
+        <div class="install">
+          <div class="install-row">
+            <div class="install-content">
+              <h2 class="install-label">Any agent</h2>
+              <code id="skills-command">Loading…</code>
+              <p class="install-note">Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI, OpenCode, and other Agent Skills clients. Pick skills and agents when prompted.</p>
+            </div>
+            <button type="button" data-copy="skills-command" disabled>Copy</button>
+          </div>
+          <div class="install-row">
+            <div class="install-content">
+              <h2 class="install-label">MCP host</h2>
+              <pre><code id="mcp-config">Loading…</code></pre>
+              <p class="install-note">Hosts with the MCP Skills extension load the skills directly; other hosts get each skill as an MCP prompt.</p>
+            </div>
+            <button type="button" data-copy="mcp-config" disabled>Copy</button>
+          </div>
+        </div>
+        <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="catalog panel" aria-label="Catalog">
+        <div class="titlebar section-title">
+          <span class="titlebar-lines" aria-hidden="true"></span>
+          <h2>Catalog browser</h2>
+          <span class="titlebar-lines" aria-hidden="true"></span>
+        </div>
+        <div class="controls">
+          <label class="search">
+            <span>Search</span>
+            <input id="search" type="search" placeholder="Name or what you need…" autocomplete="off">
+          </label>
+          <label class="select-label">
+            <span>Category</span>
+            <select id="category-filter">
+              <option value="all">All categories</option>
+            </select>
+          </label>
+        </div>
+        <div class="playlist">
+          <div class="playlist-heading">
+            <span>Skills</span>
+            <p id="result-count" class="result-count" aria-live="polite">Loading catalog…</p>
+          </div>
+          <div id="results" class="results" role="list" aria-live="polite"></div>
+        </div>
+        <footer class="player-footer">
+          <span>Built on <a href="https://agentskills.io/specification">Agent Skills</a> and the <a href="https://modelcontextprotocol.io/extensions/skills/overview">MCP Skills extension</a>.</span>
+          <a href="https://github.com/ragmha/rstack/blob/main/CONTRIBUTING.md">Contributing ↗</a>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>
