@@ -2,7 +2,7 @@
 
 My personal stack of reusable skills and workflows for working with AI coding tools. Copy what you need, install the bundle, or follow a release-pinned link from a post.
 
-Every skill follows the [Agent Skills specification](https://agentskills.io/specification), so any compatible agent can load it. The same skills are served over [MCP](https://modelcontextprotocol.io) through the [Skills extension](https://modelcontextprotocol.io/extensions/skills/overview).
+Every skill follows the [Agent Skills specification](https://agentskills.io/specification), so any compatible agent can load it. The same skills are served over [MCP](https://modelcontextprotocol.io) through the [Skills extension](https://modelcontextprotocol.io/extensions/skills/overview). Browse them in the [catalog](https://ragmha.github.io/rstack/).
 
 Many skills here are copied or adapted from [mattpocock/skills](https://github.com/mattpocock/skills) (MIT). See [Provenance](#provenance) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
@@ -17,7 +17,7 @@ npx skills add ragmha/rstack --skill diagnose -a codex    # one skill, one agent
 
 Add `-g` to install for your user instead of the current project. Update with `npx skills update`.
 
-**MCP hosts** — add the bundled stdio server. Hosts that support the Skills extension load the skills directly; hosts with only resource support can read each `SKILL.md` as a resource.
+**MCP hosts** — add the bundled stdio server. Hosts that support the Skills extension load the skills directly; other hosts get each skill as an MCP prompt.
 
 ```json
 {
@@ -41,7 +41,7 @@ copilot plugin install rstack@rstack
 | Path | Contents |
 | --- | --- |
 | `skills/<name>/SKILL.md` | Reusable Agent Skills; 31 included today. |
-| `mcp/server.mjs` | MCP stdio server for `skills/`. |
+| `mcp/server.mjs` | MCP stdio server for `skills/`: Skills extension plus one prompt per skill. |
 | `workflows/<name>.md` | GitHub Actions / gh-aw agentic workflows, when added. |
 
 The Copilot plugin manifest exposes `skills/`. Copy ordinary GitHub Actions YAML into your repo's `.github/workflows/`; install gh-aw workflows with `gh aw add ragmha/rstack/<name>@vX.Y.Z`.
