@@ -1,0 +1,26 @@
+name: Recording to spec
+
+on:
+  pull_request:
+    paths:
+      - 'skills/recording-to-spec/**'
+      - '.github/workflows/recording-to-spec.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'skills/recording-to-spec/**'
+      - '.github/workflows/recording-to-spec.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+      - name: Test local recording extraction
+        run: python3 -m unittest discover -s skills/recording-to-spec/tests -v

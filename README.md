@@ -40,7 +40,7 @@ copilot plugin install rstack@rstack
 
 | Path | Contents |
 | --- | --- |
-| `skills/<name>/SKILL.md` | Reusable Agent Skills; 31 included today. |
+| `skills/<name>/SKILL.md` | Reusable Agent Skills; 32 included today. |
 | `mcp/server.mjs` | MCP stdio server for `skills/`: Skills extension plus one prompt per skill. |
 | `workflows/<name>.md` | GitHub Actions / gh-aw agentic workflows, when added. |
 
@@ -81,6 +81,7 @@ The site's `rstack:` links resolve to `https://github.com/ragmha/rstack/tree/<ve
 - [`grill-me`](skills/grill-me/SKILL.md) - Interview the user relentlessly about a plan or design until reaching shared understanding.
 - [`grill-with-docs`](skills/grill-with-docs/SKILL.md) - Grill a plan against the existing domain model, sharpen terminology, and update CONTEXT.md / ADRs inline as decisions crystallise.
 - [`prototype`](skills/prototype/SKILL.md) - Build a throwaway prototype to flesh out a design — a runnable terminal app for state/business-logic, or several radically different UI variations toggleable from one route.
+- [`recording-to-spec`](skills/recording-to-spec/SKILL.md) - Turn a local screen recording into an evidence-linked draft specification, separating visible behavior, narrated claims, inference, and proposed requirements.
 
 ### Issue Tracker Workflow
 
@@ -148,7 +149,7 @@ A three-stage pipeline: raw material → structured article → narrative beats.
 |---|---|
 | Upstream, [mattpocock/skills](https://github.com/mattpocock/skills) (MIT) | `grill-me`, `grill-with-docs`, `handoff`, `zoom-out`, `prototype`, `to-prd`, `to-issues`, `triage`, `review`, `improve-codebase-architecture`, `tdd`, `diagnose`, `migrate-to-shoehorn`, `setup-pre-commit`, `write-a-skill`, `caveman`, `writing-fragments`, `writing-shape`, `writing-beats` |
 | Adapted from mattpocock/skills | `setup-skills` (from `setup-matt-pocock-skills`) |
-| Original | `ai-credits`, `take-breaks`, `project-tracker-sync`, `stack-audit`, `repo-status` |
+| Original | `ai-credits`, `take-breaks`, `project-tracker-sync`, `stack-audit`, `repo-status`, `recording-to-spec` |
 | Unknown (source not yet verified) | `stay-sharp`, `git-worktree`, `trunk-based-development`, `no-deprecated-code`, `refactor`, `conventional-commit` |
 
 `handoff`, `setup-skills` and `zoom-out` keep their non-standard frontmatter fields under `metadata` so they validate against the Agent Skills spec.

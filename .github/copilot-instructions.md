@@ -1,6 +1,6 @@
 # Copilot instructions — rstack
 
-A generic, reusable stack of 31 [Agent Skills](https://agentskills.io/specification) (`SKILL.md` instruction folders). Any compatible agent installs them with `npx skills add ragmha/rstack`; `mcp/server.mjs` serves the same folders over MCP with the Skills extension, plus one prompt per skill; a Copilot CLI plugin marketplace is also provided. A small Python standard-library script builds the searchable GitHub Pages catalog. Project-specific canvases belong in `ragmha/lab`, not here.
+A generic, reusable stack of 32 [Agent Skills](https://agentskills.io/specification) (`SKILL.md` instruction folders). Any compatible agent installs them with `npx skills add ragmha/rstack`; `mcp/server.mjs` serves the same folders over MCP with the Skills extension, plus one prompt per skill; a Copilot CLI plugin marketplace is also provided. A small Python standard-library script builds the searchable GitHub Pages catalog. Project-specific canvases belong in `ragmha/lab`, not here.
 
 ## Repository layout
 
